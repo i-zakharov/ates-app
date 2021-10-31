@@ -67,17 +67,17 @@ ates_analytic_service - сервис для рассчета аналитиче�
 
 
 === Бизнес события: =============================
-* Регистрация нового пользователя					Producer: ates_user_service			Consumer: ates_task_service, ates_accounting_service, ates_analytic_service
-* Блокировка пользователя							Producer: ates_user_service			Consumer: ates_task_service, ates_accounting_service, ates_analytic_service
-* Смена роли пользователя (изменение полномочий)	Producer: ates_user_service			Consumer: ates_task_service, ates_accounting_service, ates_analytic_service
-* Создание таска									Producer: ates_task_service			Consumer: ates_accounting_service, ates_analytic_service
-* Закрытие таска									Producer: ates_task_service			Consumer: ates_accounting_service, ates_analytic_service
-* Назначение таска									Producer: ates_task_service			Consumer: ates_accounting_service, ates_analytic_service
-* Рассчет стоимости таска							Producer: ates_accounting_service	Consumer: ates_task_service, ates_analytic_service									
-* Списание со счета при назначении таска			Producer: ates_accounting_service	Consumer: ??? пока никому не надо
-* Зачисление на счет при закрытии таска				Producer: ates_accounting_service	Consumer: ??? пока никому не надо
-* Закрытие бизнес дня								Producer: ates_accounting_service	Consumer: ates_analytic_service
-* Выплата со счета по итогу бизнес дня 				Producer: ates_accounting_service	Consumer: ates_analytic_service 
+* Регистрация нового пользователя			Producer: ates_user_service	Consumer: ates_task_service, ates_accounting_service, ates_analytic_service
+* Блокировка пользователя				Producer: ates_user_service	Consumer: ates_task_service, ates_accounting_service, ates_analytic_service
+* Смена роли пользователя (изменение полномочий)	Producer: ates_user_service	Consumer: ates_task_service, ates_accounting_service, ates_analytic_service
+* Создание таска					Producer: ates_task_service	Consumer: ates_accounting_service, ates_analytic_service
+* Закрытие таска					Producer: ates_task_service	Consumer: ates_accounting_service, ates_analytic_service
+* Назначение таска					Producer: ates_task_service	Consumer: ates_accounting_service, ates_analytic_service
+* Рассчет стоимости таска				Producer: ates_accounting_service	Consumer: ates_task_service, ates_analytic_service									
+* Списание со счета при назначении таска		Producer: ates_accounting_service	Consumer: ??? пока никому не надо
+* Зачисление на счет при закрытии таска			Producer: ates_accounting_service	Consumer: ??? пока никому не надо
+* Закрытие бизнес дня					Producer: ates_accounting_service	Consumer: ates_analytic_service
+* Выплата со счета по итогу бизнес дня 			Producer: ates_accounting_service	Consumer: ates_analytic_service 
 
 === CUD события: =================================
 * Изменения атрибутов пользователя
