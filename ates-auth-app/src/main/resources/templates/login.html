@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-auth</title>
+	<script>
+		window.onload = function () {
+			var form = document.getElementById('login_form');
+			form.onsubmit = submitted.bind(form);
+		};
+
+		function setCookie(name, value, days) {
+			var expires = "";
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+				expires = "; expires=" + date.toUTCString();
+			}
+			document.cookie = name + "=" + (value || "") + expires + "; path=/";
+		}
+
+		function submitted(event) {
+			event.preventDefault();
+			var login = document.getElementById('username').value;
+			var password = document.getElementById('password').value;
+			var request = new XMLHttpRequest();
+			request.open('POST', '/oauth/token?grant_type=client_credentials', false, login, password);
+
+			request.onreadystatechange = function () {
+				if (request.readyState == 4 && request.status == 200) {
+					alert('Токен будет сохранен: ' + request.responseText);
+					const jwt = JSON.parse(request.responseText);
+					const accessToken = jwt.access_token;
+					//положим в куки
+					setCookie('access_token', accessToken, 1);
+					//и еще в local storage
+					window.localStorage.setItem('access_token', accessToken);
+					window.sessionStorage.setItem('access_token', accessToken);
+					document.location.replace("/");
+				}
+			};
+			request.send();
+		}
+	</script>
+</head>
+
+<body>
+<div class="container">
+	<h2 class="form-signin-heading">Welcome, please login</h2>
+	<div th:if="${param.error}" class="alert alert-danger">
+		Invalid username and password.
+	</div>
+	<div th:if="${param.logout}" class="alert alert-success">
+		You have been logged out.
+	</div>
+	<form class="form-signin" method="POST" id="login_form">
+		<p>
+			<label for="username" class="sr-only">Username</label>
+			<input type="text" id="username" name="username" class="form-control"
+				   placeholder="Username" required autofocus>
+		</p>
+		<p>
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" id="password" name="password" class="form-control"
+				   placeholder="Password" required>
+		</p>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+	</form>
+</div>
+</body>
+</html>

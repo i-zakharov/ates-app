@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc2d779b-3c09-429a-b4d1-d5d2876b302e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/main/java/ru/zim/ates/auth/SpringBootAtesAuthApplication.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/main/java/ru/zim/ates/auth/config/AppTemplateResolver.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/main/java/ru/zim/ates/auth/config/security/AppSecurityConfig.java" afterDir="false" />
@@ -35,68 +29,9 @@
       <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/main/resources/templates/login.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/main/resources/templates/me.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/main/resources/templates/users.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/test/java/ru/zim/ates/auth/PasswordEncodingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-auth-app/src/test/java/ru/zim/ates/auth/SpringBootAtesAuthApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ates_common_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_12_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_12_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_12_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_12_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_12_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_15.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_54.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_54.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_54.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_60.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_60.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_oauth_spring_security_oauth2_2_5_0_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_5_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_5_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_5_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_jwt_1_0_10_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_5_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_28.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ates-common.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/ru/zim/ates/common/config/security/AuthHeaderHandlingFilter.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/ru/zim/ates/common/config/security/AuthHeaderHandlingRequestWrapper.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/ru/zim/ates/common/model/AppRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-task-app/src/main/java/ru/zim/ates/tasktracker/SpringBootAtesTaskTrackerApplication.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-task-app/src/main/java/ru/zim/ates/tasktracker/config/AppTemplateResolver.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-task-app/src/main/java/ru/zim/ates/tasktracker/config/security/resourceserver/ResourceServerConfig.java" afterDir="false" />
@@ -107,8 +42,6 @@
       <change afterPath="$PROJECT_DIR$/../ates-task-app/src/main/resources/log4j2-spring.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-task-app/src/main/resources/templates/index.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ates-task-app/src/main/resources/templates/tasks.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/src/test/java/ru/zim/ates/tasktracker/PasswordEncodingTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ates-task-app/src/test/java/ru/zim/ates/tasktracker/SpringBootAtesTaskApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
