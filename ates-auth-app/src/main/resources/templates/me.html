@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-auth</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис аутентификации</h1>
+	Этот ресурс доступен только аутентифицированным пользователям.
+	<div th:if="${currentUser}">
+		<h3>Вы вошли в систему под такой учетной записью:</h3>
+		<table>
+			<tr>
+				<td>Id:</td>
+				<td>[[${currentUser.id}]]</td>
+			</tr>
+			<tr>
+				<td>Логин:</td>
+				<td>[[${currentUser.username}]]</td>
+			</tr>
+			<tr>
+				<td>Роли:</td>
+				<td>
+					<table>
+						<tr th:each="role, index : ${currentUser.roles}">
+							<td th:text="${role}"/>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>
