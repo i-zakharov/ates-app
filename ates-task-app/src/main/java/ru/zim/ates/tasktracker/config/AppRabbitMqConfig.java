@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.zim.ates.tasktracker.service.ConsumerService;
 
-import static ru.zim.ates.common.config.MqConfig.*;
+import static ru.zim.ates.common.schemaregistry.MqConfig.*;
 
 @Configuration
 public class AppRabbitMqConfig {
@@ -16,7 +16,7 @@ public class AppRabbitMqConfig {
             MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(ATES_QUEUE_TEST);
+        container.setQueueNames(ATES_TEST_QUEUE);
         container.setMessageListener(listenerAdapter);
         return container;
     }

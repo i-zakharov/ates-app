@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ates-users-stream-exchange.ATES_USER_CREATED.v1",
+  "description": "json schema for ATES_USER_CREATED event (version 1)",
+  "definitions": {
+    "EventData": {
+      "type": "object",
+      "properties": {
+        "publicId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "publicId",
+        "username",
+        "isActive",
+        "role"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventVersion": {
+      "enum": [
+        "1"
+      ]
+    },
+    "eventType": {
+      "enum": [
+        "ATES_USER_CREATED"
+      ]
+    },
+    "eventTime": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/definitions/EventData"
+    }
+  },
+  "required": [
+    "eventId",
+    "eventVersion",
+    "eventType",
+    "eventTime",
+    "producer",
+    "data"
+  ]
+}
