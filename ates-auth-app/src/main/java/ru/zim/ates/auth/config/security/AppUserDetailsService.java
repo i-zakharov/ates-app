@@ -10,11 +10,8 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
-import ru.zim.ates.auth.mapper.CommaSeparatedStringsToRolesConverter;
 import ru.zim.ates.auth.model.AppUser;
 import ru.zim.ates.auth.repository.AppUserRepository;
-
-import static ru.zim.ates.auth.mapper.CommaSeparatedStringsToRolesConverter.listToArray;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService, ClientDetailsService {
@@ -28,7 +25,7 @@ public class AppUserDetailsService implements UserDetailsService, ClientDetailsS
                 .map(appUser -> User.builder()
                         .username(appUser.getUsername())
                         .password(appUser.getPassword())
-                        .roles(listToArray(appUser.getRoles()))
+                        .roles(appUser.getRole().name())
                         .build())
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("No user(%s) found in db.", username)));
     }
@@ -46,7 +43,7 @@ public class AppUserDetailsService implements UserDetailsService, ClientDetailsS
                 null,
                 "read",
                 "client_credentials",
-                CommaSeparatedStringsToRolesConverter.listToString(appUser.getRoles()));
+                appUser.getRole().name());
         out.setClientSecret(appUser.getPassword());
         return out;
     }

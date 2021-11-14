@@ -1,14 +1,14 @@
 package ru.zim.ates.auth.dto;
 
-import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
 @Data
-public class AppUserResponceDto {
-    private String id;
-    private String username;
-    private Boolean isActive;
-    private List<String> roles;
+@NoArgsConstructor
+public class AppUserResponceDto extends AppUserUpdateRequestDto {
+    @Builder(builderMethodName = "responceBuilder")
+    public AppUserResponceDto(String username, Boolean isActive, String role, Long id, String publicId) {
+        super(username, isActive, role, id, publicId);
+    }
 }

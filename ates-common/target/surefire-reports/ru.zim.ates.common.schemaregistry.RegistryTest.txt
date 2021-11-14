@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: ru.zim.ates.common.schemaregistry.RegistryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.696 s <<< FAILURE! - in ru.zim.ates.common.schemaregistry.RegistryTest
+ru.zim.ates.common.schemaregistry.RegistryTest  Time elapsed: 0.696 s  <<< ERROR!
+java.io.FileNotFoundException: class path resource [schemaregistry/shemas/ates-users-stream-exchange/ATES_USER_CREATED/] cannot be resolved to URL because it does not exist
+	at ru.zim.ates.common.schemaregistry.RegistryTest.init(RegistryTest.java:29)
+

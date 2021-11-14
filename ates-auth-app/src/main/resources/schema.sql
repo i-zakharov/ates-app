@@ -2,9 +2,10 @@ DROP TABLE IF EXISTS app_user;
 
 CREATE TABLE app_user
 (
-    id        VARCHAR(50) PRIMARY KEY,
+    id        IDENTITY PRIMARY KEY,
+    PUBLIC_ID VARCHAR(50)  NOT NULL UNIQUE,
     username  VARCHAR(250) NOT NULL,
     password  VARCHAR(250) NOT NULL,
     is_active BOOLEAN      NOT NULL,
-    roles     VARCHAR(1000)
+    role      VARCHAR(250)
 );
