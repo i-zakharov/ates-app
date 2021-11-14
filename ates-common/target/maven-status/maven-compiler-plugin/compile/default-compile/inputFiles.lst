@@ -1,4 +1,15 @@
-C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\config\security\AuthHeaderHandlingFilter.java
-C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\config\MqConfig.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\EventCategory.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\exception\SchemaNotFoundException.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\MqConfig.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\exception\AppException.java
 C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\config\security\AuthHeaderHandlingRequestWrapper.java
 C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\model\AppRole.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\exception\EventVersionNotFoundException.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\EventEnvelope.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\utils\Utils.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\EventType.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\exception\EventValidationException.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\utils\RawJsonDeserializer.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\config\security\AuthHeaderHandlingFilter.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\EventSchemaRegistry.java
+C:\my\projects\ates-app\ates-common\src\main\java\ru\zim\ates\common\schemaregistry\exception\SchemaRegistryException.java

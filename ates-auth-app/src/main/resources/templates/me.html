@@ -21,14 +21,8 @@
 				<td>[[${currentUser.username}]]</td>
 			</tr>
 			<tr>
-				<td>Роли:</td>
-				<td>
-					<table>
-						<tr th:each="role, index : ${currentUser.roles}">
-							<td th:text="${role}"/>
-						</tr>
-					</table>
-				</td>
+				<td>Роль:</td>
+				<td>[[${currentUser.role}]]</td>
 			</tr>
 		</table>
 	</div>

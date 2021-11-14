@@ -1,14 +1,12 @@
 package ru.zim.ates.auth.service;
 
-import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.zim.ates.auth.dto.AppUserCreateRequestDto;
 import ru.zim.ates.auth.model.AppUser;
-import ru.zim.ates.auth.repository.AppUserRepository;
 import ru.zim.ates.common.model.AppRole;
 
 @Service
@@ -16,35 +14,31 @@ import ru.zim.ates.common.model.AppRole;
 public class InitService {
 
     @Autowired
-    private AppUserRepository appUserRepository;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private AppUserService appUserService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void addSomeUsersAfterStartup() {
 
-        AppUser appUser = appUserRepository.save(AppUser.builder()
+        AppUser appUser = appUserService.create(AppUserCreateRequestDto.createBuilder()
                 .username("admin")
-                .password(passwordEncoder.encode("qwerty"))
+                .clearPassword("qwerty")
                 .isActive(true)
-                .roles(Arrays.asList(AppRole.ADMIN, AppRole.USER))
-                .build());
+                .role(AppRole.ADMIN.name()).build());
         log.info("User added: {}", appUser);
 
-        appUser = appUserRepository.save(AppUser.builder()
+        appUser = appUserService.create(AppUserCreateRequestDto.createBuilder()
                 .username("popug-kesha")
-                .password(passwordEncoder.encode("qwerty"))
+                .clearPassword("qwerty")
                 .isActive(true)
-                .roles(Arrays.asList(AppRole.USER))
-                .build());
+                .role(AppRole.USER.name()).build());
         log.info("User added: {}", appUser);
 
-        appUser = appUserRepository.save(AppUser.builder()
+        appUser = appUserService.create(AppUserCreateRequestDto.createBuilder()
                 .username("ates-task-sys-user")
-                .password(passwordEncoder.encode("qwerty"))
+                .clearPassword("qwerty")
                 .isActive(true)
-                .roles(Arrays.asList(AppRole.ADMIN, AppRole.USER))
-                .build());
+                .role(AppRole.ADMIN.name()).build());
         log.info("User added: {}", appUser);
+
     }
 }

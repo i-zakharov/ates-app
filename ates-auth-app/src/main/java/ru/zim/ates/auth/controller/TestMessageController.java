@@ -1,6 +1,5 @@
 package ru.zim.ates.auth.controller;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,15 +26,11 @@ public class TestMessageController {
 
     @PostMapping("/send")
     public @ResponseBody
-    String send(@ModelAttribute("message") MessageDto messageDto) {
+    String send(@ModelAttribute("message") TestMessageProducerService.MessageDto messageDto) {
         log.info(messageDto.toString());
-        testMessageService.sendMessage(messageDto.getText());
+        testMessageService.sendMessage(messageDto);
         return "Ok";
     }
 
-    @Data
-    public static class MessageDto {
-        String text;
-    }
 
 }

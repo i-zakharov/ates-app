@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan(basePackages = { "ru.zim.ates.auth", "ru.zim.ates.common" })
 @EnableWebSecurity
 public class SpringBootAtesAuthApplication {
 
