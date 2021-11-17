@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AppUserResponceDto extends AppUserUpdateRequestDto {
     @Builder(builderMethodName = "responceBuilder")
-    public AppUserResponceDto(String username, Boolean isActive, String role, Long id, String publicId) {
-        super(username, isActive, role, id, publicId);
+    public AppUserResponceDto(String username, String fullName, String email, Boolean isActive, String role, Long id, String publicId, Integer version) {
+        super(username, fullName, email, isActive, role, id, publicId, version);
     }
 }

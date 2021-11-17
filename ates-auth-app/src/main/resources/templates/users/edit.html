@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-auth</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис аутентификации</h1>
+	<p>
+	<h3>Редактирование пользователя</h3>
+	<form action="#" th:action="@{./edit}" th:object="${appUser}" method="post">
+		<div class="row">
+			<div>
+				<p>Пользователь с Id = [[${appUser.id}]]</p>
+			</div>
+			<div>
+				<label for="name">Username</label>
+				<input type="text" th:field="*{username}"
+					   id="username" placeholder=""/>
+			</div>
+			<div>
+				<label for="name">Full name</label>
+				<input type="text" th:field="*{fullName}"
+					   id="fullName" placeholder=""/>
+			</div>
+			<div>
+				<label for="name">Email</label>
+				<input type="text" th:field="*{email}"
+					   id="email" placeholder=""/>
+			</div>
+			<div>
+				<div th:if="${appRoles != null and not #lists.isEmpty(appRoles)}">
+					<label for="name">Role</label>
+					<select th:field="*{role}">
+						<option th:each="dropDownItem : ${appRoles}"
+								th:value="${dropDownItem.name}"
+								th:text="${dropDownItem.name}"/>
+					</select>
+				</div>
+			</div>
+			<div>
+				<label for="name" class="col-form-label">Is Active</label>
+				<input type="checkbox" name="active" th:field="*{isActive}"/>
+			</div>
+
+			<div>
+				<p>Версия = [[${appUser.version}]]</p>
+			</div>
+
+			<div>
+				<input type="submit" value=" Submit ">
+			</div>
+
+			<input type="hidden" id="id" th:field="*{id}">
+			<input type="hidden" id="publicId" th:field="*{publicId}">
+		</div>
+	</form>
+	<a th:href="@{./list}">Back to list</a>
+</div>
+</body>
+</html>

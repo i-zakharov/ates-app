@@ -1,4 +1,4 @@
-package ru.zim.ates.auth.dto;
+package ru.zim.ates.tasktracker.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppUserDto {
+public class AppUserFromEventDto {
+    private String publicId;
     private String username;
     private String fullName;
     private String email;

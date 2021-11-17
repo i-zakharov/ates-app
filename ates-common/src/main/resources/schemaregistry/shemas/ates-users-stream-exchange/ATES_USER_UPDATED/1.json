@@ -12,18 +12,28 @@
         "username": {
           "type": "string"
         },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
         "isActive": {
           "type": "boolean"
         },
         "role": {
           "type": "string"
+        },
+        "version": {
+          "type": "number"
         }
       },
       "required": [
         "publicId",
         "username",
         "isActive",
-        "role"
+        "role",
+        "version"
       ]
     }
   },

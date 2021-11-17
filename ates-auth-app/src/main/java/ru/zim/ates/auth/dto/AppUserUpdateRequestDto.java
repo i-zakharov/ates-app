@@ -11,8 +11,8 @@ public class AppUserUpdateRequestDto extends AppUserDto {
     private String publicId;
 
     @Builder(builderMethodName = "updateBuilder")
-    public AppUserUpdateRequestDto(String username, Boolean isActive, String role, Long id, String publicId) {
-        super(username, isActive, role);
+    public AppUserUpdateRequestDto(String username, String fullName, String email, Boolean isActive, String role, Long id, String publicId, Integer version) {
+        super(username, fullName, email, isActive, role, version);
         this.id = id;
         this.publicId = publicId;
     }

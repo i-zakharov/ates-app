@@ -11,11 +11,15 @@
         },
         "role": {
           "type": "string"
+        },
+        "version": {
+          "type": "number"
         }
       },
       "required": [
         "publicId",
-        "role"
+        "role",
+        "version"
       ]
     }
   },

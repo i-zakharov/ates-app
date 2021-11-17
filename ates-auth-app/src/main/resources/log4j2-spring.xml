@@ -31,7 +31,8 @@
 		</Root>
 
 		<!-- LOG "com.baeldung*" at TRACE level -->
-		<Logger name="com.baeldung" level="trace"></Logger>
+		<Logger name="org.hibernate.SQL" level="debug"></Logger>
+		<Logger name="org.hibernate.type" level="trace"></Logger>
 	</Loggers>
 
 </Configuration>

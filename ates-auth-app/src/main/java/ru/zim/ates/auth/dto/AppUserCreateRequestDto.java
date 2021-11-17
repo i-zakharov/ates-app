@@ -11,8 +11,8 @@ public class AppUserCreateRequestDto extends AppUserDto {
     private String clearPassword;
 
     @Builder(builderMethodName = "createBuilder")
-    public AppUserCreateRequestDto(String username, Boolean isActive, String role, String clearPassword) {
-        super(username, isActive, role);
+    public AppUserCreateRequestDto(String username, String fullName, String email, Boolean isActive, String role, String clearPassword, Integer version) {
+        super(username, fullName, email, isActive, role, version);
         this.clearPassword = clearPassword;
     }
 }
