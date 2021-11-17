@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ates-users-stream-exchange.ATES_TEST.v1",
+  "description": "json schema for ATES_TEST event (version 1)",
+  "definitions": {
+    "EventData": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventVersion": {
+      "enum": [
+        "1"
+      ]
+    },
+    "eventType": {
+      "enum": [
+        "ATES_TEST"
+      ]
+    },
+    "eventTime": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/definitions/EventData"
+    }
+  },
+  "required": [
+    "eventId",
+    "eventVersion",
+    "eventType",
+    "eventTime",
+    "producer",
+    "data"
+  ]
+}
