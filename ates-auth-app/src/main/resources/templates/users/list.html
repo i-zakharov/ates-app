@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-auth</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис аутентификации</h1>
+	<p>
+	<h3>Пользователи</h3>
+	<a th:href="@{./add}">Add new</a>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Public ID</th>
+			<th>User name</th>
+			<th>Is Active</th>
+			<th>Role</th>
+			<th>Version</th>
+		</tr>
+		<tr th:each="appUser : ${appUsers}">
+			<td th:text="${appUser.id}"></td>
+			<td th:text="${appUser.publicId}"></td>
+			<td th:text="${appUser.username}"></td>
+			<td th:text="${appUser.fullName}"></td>
+			<td th:text="${appUser.email}"></td>
+			<td th:text="${appUser.isActive}? 'Yes' : 'No'"></td>
+			<td th:text="${appUser.role}"></td>
+			<td th:text="${appUser.version}"></td>
+			<td><a th:href="@{./edit?id={id} (id=${appUser.id})}">Edit</a></td>
+			<td><a th:href="@{./delete?id={id} (id=${appUser.id})}">Delete</a></td>
+		</tr>
+	</table>
+
+	</p>
+</div>
+</body>
+</html>
