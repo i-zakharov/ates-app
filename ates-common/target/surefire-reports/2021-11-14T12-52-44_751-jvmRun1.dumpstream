@@ -1,0 +1,26 @@
+# Created at 2021-11-14T12:52:45.240
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[0.041s][warning][os,thread] Failed to start thread - _beginthreadex failed (EINVAL) for attributes: stacksize: default, flags: CREATE_SUSPENDED STACK_SIZE_PARAM_IS.'.
+
+# Created at 2021-11-14T12:52:45.241
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '[0.041s][warning][os,thread] Attempt to allocate stack guard pages failed.'.
+
+# Created at 2021-11-14T12:52:45.242
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'Error occurred during initialization of VM'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command 'Error occurred during initialization of VM'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:507)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:210)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:177)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+
+# Created at 2021-11-14T12:52:45.243
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'java.lang.OutOfMemoryError: unable to create native thread: possibly out of memory or process/resource limits reached'.
+java.lang.IllegalArgumentException: Stream stdin corrupted. Expected comma after third character in command 'java.lang.OutOfMemoryError: unable to create native thread: possibly out of memory or process/resource limits reached'.
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient$OperationalData.<init>(ForkClient.java:507)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:210)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:177)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+

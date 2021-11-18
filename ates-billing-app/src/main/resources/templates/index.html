@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8" />
+	<title>ates-billing</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис Billing</h1>
+</div>
+<div>
+	<h3>Для аутентификации перейди в сервис Аутентификации</h3>
+	<a th:href="${login_url}">login</a>
+</div>
+<div>
+	<h3>Доступ к этим ресурсам только у аутентифицированных пользователей</h3>
+	<a href="/billing/billing-dashbord">/billing/billing-dashbord</a>
+</div>
+<br/>
+<div>
+	<h3>Для отладки</h3>
+	<a href="/h2-console">h2-console</a>
+</div>
+</body>
+</html>

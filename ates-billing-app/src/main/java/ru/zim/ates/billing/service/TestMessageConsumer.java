@@ -1,13 +1,11 @@
-package ru.zim.ates.tasktracker.service;
+package ru.zim.ates.billing.service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.zim.ates.common.schemaregistry.EventEnvelope;
@@ -16,7 +14,7 @@ import ru.zim.ates.common.schemaregistry.utils.Utils;
 
 @Component
 @Slf4j
-public class ConsumerService {
+public class TestMessageConsumer {
     @Autowired
     private EventSchemaRegistry eventSchemaRegistry;
 

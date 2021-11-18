@@ -1,4 +1,4 @@
-package ru.zim.ates.tasktracker.config;
+package ru.zim.ates.billing.config;
 
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersConsumer;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersStreamConsumer;
-import ru.zim.ates.tasktracker.service.TestMessageConsumer;
+import ru.zim.ates.billing.service.TestMessageConsumer;
 
 import static ru.zim.ates.common.schemaregistry.MqConfig.*;
 
@@ -27,7 +27,7 @@ public class AppRabbitMqConfig {
             UsersStreamMessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(ATES_USERS_STREAM_TASK_TRACKER_QUEUE);
+        container.setQueueNames(ATES_USERS_STREAM_BILLING_QUEUE);
         container.setMessageListener(listenerAdapter);
         return container;
     }
@@ -36,7 +36,7 @@ public class AppRabbitMqConfig {
             UsersMessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(ATES_USERS_TASK_TRACKER_QUEUE);
+        container.setQueueNames(ATES_USERS_BILLING_QUEUE);
         container.setMessageListener(listenerAdapter);
         return container;
     }

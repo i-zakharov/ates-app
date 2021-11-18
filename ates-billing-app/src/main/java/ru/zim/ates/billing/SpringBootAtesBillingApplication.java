@@ -1,4 +1,4 @@
-package ru.zim.ates.tasktracker;
+package ru.zim.ates.billing;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,14 +10,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common"})
-@EnableJpaRepositories(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common.standartimpl.consumer.user"})
-@EntityScan(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common.standartimpl.consumer.user"})
+@ComponentScan(basePackages = { "ru.zim.ates.billing", "ru.zim.ates.common"})
+@EnableJpaRepositories(basePackages = { "ru.zim.ates.billing", "ru.zim.ates.common.standartimpl.consumer.user"})
+@EntityScan(basePackages = {"ru.zim.ates.billing", "ru.zim.ates.common.standartimpl.consumer.user"})
 @EnableWebSecurity
-public class SpringBootAtesTaskTrackerApplication {
+public class SpringBootAtesBillingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootAtesTaskTrackerApplication.class, args);
+		SpringApplication.run(SpringBootAtesBillingApplication.class, args);
 	}
 
 }

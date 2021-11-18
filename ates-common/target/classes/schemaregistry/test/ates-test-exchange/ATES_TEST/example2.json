@@ -1,0 +1,10 @@
+{
+  "eventId" : "D25AD9EC-2BDE-4880-A288-5CA5C53F878B",
+  "eventVersion" : "1",
+  "eventType":"ATES_TEST",
+  "eventTime":"2014-03-12T13:37:27",
+  "producer":"Some service",
+  "data" : {
+    "text2":"My Message2"
+  }
+}
