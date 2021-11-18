@@ -1,2 +1,16 @@
+ru\zim\ates\common\standartimpl\consumer\user\repository\AppUserRepository.class
+ru\zim\ates\common\standartimpl\consumer\user\model\AppUser$AppUserBuilder.class
+ru\zim\ates\common\standartimpl\consumer\user\dto\AppUserFromEventDto$AppUserFromEventDtoBuilder.class
+ru\zim\ates\common\standartimpl\consumer\user\service\UsersConsumer$1.class
+ru\zim\ates\common\standartimpl\consumer\user\service\UsersConsumer.class
 ru\zim\ates\common\schemaregistry\exception\EventValidationException.class
+ru\zim\ates\common\standartimpl\consumer\user\dto\AppUserResponceDto.class
+ru\zim\ates\common\standartimpl\consumer\user\service\UsersStreamConsumer.class
+ru\zim\ates\common\standartimpl\consumer\user\service\UsersStreamConsumer$1.class
+ru\zim\ates\common\consumer\BaseConsumer.class
+ru\zim\ates\common\standartimpl\consumer\user\mapper\AppUserMapper.class
+ru\zim\ates\common\standartimpl\consumer\user\dto\AppUserFromEventDto.class
+ru\zim\ates\common\standartimpl\consumer\user\service\AppUserService.class
+ru\zim\ates\common\standartimpl\consumer\user\dto\AppUserResponceDto$AppUserResponceDtoBuilder.class
+ru\zim\ates\common\standartimpl\consumer\user\model\AppUser.class
 ru\zim\ates\common\schemaregistry\utils\Utils.class
