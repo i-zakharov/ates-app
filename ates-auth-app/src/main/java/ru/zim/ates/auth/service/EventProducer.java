@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
-import ru.zim.ates.auth.service.events.UsersProducerNotifyEvent;
+import ru.zim.ates.auth.service.events.ProducerNotifyEvent;
 import ru.zim.ates.common.schemaregistry.EventCategory;
 import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
 import ru.zim.ates.common.schemaregistry.utils.Utils;
@@ -15,7 +15,7 @@ import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_EXCHANGE;
 import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_EXCHANGE;
 
 @Component
-public class UsersEventProducer {
+public class EventProducer {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -24,7 +24,7 @@ public class UsersEventProducer {
 
     @SneakyThrows
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    public void processEvent(UsersProducerNotifyEvent producerNotifyEvent) {
+    public void processEvent(ProducerNotifyEvent producerNotifyEvent) {
 
         String rawMessage = Utils.mapper.writeValueAsString(producerNotifyEvent.getEventEnvelope());
         eventSchemaRegistry.parseAndValidate(rawMessage);

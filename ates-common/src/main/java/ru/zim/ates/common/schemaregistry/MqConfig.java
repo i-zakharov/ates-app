@@ -10,10 +10,12 @@ public interface MqConfig {
     public static final String ATES_TEST_EXCHANGE = "ates-test-exchange";
     public static final String  ATES_TEST_ROOTING_KEY = "ates-test-routing_key";
 
-    public static final String ATES_USERS_QUEUE = "ates-users-queue";
+    public static final String ATES_USERS_TASK_TRACKER_QUEUE = "ates-users-task-tracker-queue";
+    public static final String ATES_USERS_BILLING_QUEUE = "ates-users-billing-queue";
     public static final String ATES_USERS_EXCHANGE = "ates-users-exchange";
 
-    public static final String ATES_USERS_STREAM_QUEUE = "ates-users-stream-queue";
+    public static final String ATES_USERS_STREAM_TASK_TRACKER_QUEUE = "ates-users-stream-task-tracker-queue";
+    public static final String ATES_USERS_STREAM_BILLING_QUEUE = "ates-users-stream-billing-queue";
     public static final String ATES_USERS_STREAM_EXCHANGE = "ates-users-stream-exchange";
 
 }
