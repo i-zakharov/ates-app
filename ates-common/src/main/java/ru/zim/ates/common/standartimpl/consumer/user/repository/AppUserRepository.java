@@ -19,8 +19,12 @@ public interface AppUserRepository extends CrudRepository<AppUser, Long> {
 
     List<AppUser> findAll();
 
+    AppUser getOne(Long id);
+
     @Lock(LockModeType.PESSIMISTIC_READ)
     @Query("SELECT a FROM AppUser a WHERE a.publicId = :publicId")
     Optional<AppUser> findAndLockByPublicId(UUID publicId);
+
+
 
 }

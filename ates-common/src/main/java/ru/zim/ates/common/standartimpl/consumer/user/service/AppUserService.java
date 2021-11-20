@@ -3,6 +3,7 @@ package ru.zim.ates.common.standartimpl.consumer.user.service;
 import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class AppUserService {
             return create(dto);
         }
         appUser = repository.findById(appUser.getId()).get();
-        if (dto.getVersion() < appUser.getVersion()) { //Если мы получили более старую версию объекта, то нам не не нужно обновлять данные
+        if (dto.getVersion() < ObjectUtils.firstNonNull(appUser.getVersion(), 0)) { //Если мы получили более старую версию объекта, то нам не не нужно обновлять данные
             return appUser;
         } else {
             userMapper.mergeFromEventDto(dto, appUser);
@@ -58,7 +59,7 @@ public class AppUserService {
             return repository.save(appUser);
         }
         appUser = repository.findById(appUser.getId()).get();
-        if (version < appUser.getRoleChangedVersion()) { //Если мы получили более старую версию объекта, то нам не не нужно обновлять данные
+        if (version < ObjectUtils.firstNonNull(appUser.getRoleChangedVersion(), 0)) { //Если мы получили более старую версию объекта, то нам не не нужно обновлять данные
             return appUser;
         } else {
             appUser.setRole(appRole);

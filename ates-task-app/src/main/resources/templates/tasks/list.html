@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-auth</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис Task Tracker</h1>
+	<p>
+	<h3>Пользователи</h3>
+	<a th:href="@{./add}">Add new</a>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Public ID</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Assignee ID</th>
+			<th>Assignee Username</th>
+			<th>Price</th>
+			<th>Version</th>
+		</tr>
+		<tr th:each="task : ${tasks}">
+			<td th:text="${task.id}"></td>
+			<td th:text="${task.publicId}"></td>
+			<td th:text="${task.title}"></td>
+			<td th:text="${task.description}"></td>
+			<td th:text="${task.status}"></td>
+			<td th:text="${task.assignee.id}"></td>
+			<td th:text="${task.assignee.username}"></td>
+			<td th:text="${task.price}"></td>
+			<td th:text="${task.version}"></td>
+			<td><a th:href="@{./card?id={id} (id=${task.id})}">Go to card</a></td>
+		</tr>
+	</table>
+
+	</p>
+</div>
+</body>
+</html>

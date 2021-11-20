@@ -7,6 +7,12 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_BILLING_QUEUE;
+import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_EXCHANGE;
+import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_PRICES_EXCHANGE;
+import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_PRICES_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_STREAM_BILLING_QUEUE;
+import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_STREAM_EXCHANGE;
 import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_EXCHANGE;
 import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_QUEUE;
 import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_ROOTING_KEY;
@@ -35,6 +41,20 @@ public class AppRabbitMqConfig {
     UsersStreamTopicExcange usersStreamTopicExchange() {
         return new UsersStreamTopicExcange(ATES_USERS_STREAM_EXCHANGE, false, false);
     }
+    @Bean
+    TasksTopicExcange tasksTopicExchange() {
+        return new TasksTopicExcange(ATES_TASKS_EXCHANGE, false, false);
+    }
+    @Bean
+    TasksPricesTopicExcange tasksPricesTopicExchange() {
+        return new TasksPricesTopicExcange(ATES_TASKS_PRICES_EXCHANGE, false, false);
+    }
+    @Bean
+    TasksStreamTopicExcange tasksStreamTopicExcange() {
+        return new TasksStreamTopicExcange(ATES_TASKS_STREAM_EXCHANGE, false, false);
+    }
+
+    //TasksStreamTopicExcange
 
     /*
      *  Queues
@@ -59,6 +79,19 @@ public class AppRabbitMqConfig {
     public UsersStreamTaskTrackerQueue usersStreamTaskTrackerQueue() {
         return new UsersStreamTaskTrackerQueue(ATES_USERS_STREAM_TASK_TRACKER_QUEUE, false, false, false);
     }
+    @Bean
+    public TasksBillingQueue tasksBillingQueue() {
+        return new TasksBillingQueue(ATES_TASKS_BILLING_QUEUE, false, false, false);
+    }
+    @Bean
+    public TasksStreamBillingQueue tasksStreamBillingQueue() {
+        return new TasksStreamBillingQueue(ATES_TASKS_STREAM_BILLING_QUEUE, false, false, false);
+    }
+    @Bean
+    public TasksPricesTaskTrackerQueue tasksPricesTaskTrackerQueue() {
+        return new TasksPricesTaskTrackerQueue(ATES_TASKS_PRICES_TASK_TRACKER_QUEUE, false, false, false);
+    }
+
 
 
     /*
@@ -85,8 +118,18 @@ public class AppRabbitMqConfig {
     Binding usersStreamTaskTrackerBinding(UsersStreamTaskTrackerQueue queue, UsersStreamTopicExcange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("");
     }
-
-
+    @Bean
+    Binding tasksBillingBinding(TasksBillingQueue queue, TasksTopicExcange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with("");
+    }
+    @Bean
+    Binding tasksStreamBillingBinding(TasksStreamBillingQueue queue, TasksStreamTopicExcange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with("");
+    }
+    @Bean
+    Binding tasksPricesTaskTrackerBinding(TasksPricesTaskTrackerQueue queue, TasksPricesTopicExcange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with("");
+    }
 
     /**
      * Topics classes
@@ -105,6 +148,24 @@ public class AppRabbitMqConfig {
     }
     public static class TestTopicExcange extends TopicExchange {
         public TestTopicExcange(String name, boolean durable, boolean autoDelete) {
+            super(name, durable, autoDelete);
+        }
+
+    }
+    public static class TasksTopicExcange extends TopicExchange {
+        public TasksTopicExcange(String name, boolean durable, boolean autoDelete) {
+            super(name, durable, autoDelete);
+        }
+
+    }
+    public static class TasksStreamTopicExcange extends TopicExchange {
+        public TasksStreamTopicExcange(String name, boolean durable, boolean autoDelete) {
+            super(name, durable, autoDelete);
+        }
+
+    }
+    public static class TasksPricesTopicExcange extends TopicExchange {
+        public TasksPricesTopicExcange(String name, boolean durable, boolean autoDelete) {
             super(name, durable, autoDelete);
         }
 
@@ -135,6 +196,21 @@ public class AppRabbitMqConfig {
     }
     public static class TestQueue extends Queue {
         public TestQueue(String name, boolean durable, boolean exclusive, boolean autoDelete) {
+            super(name, durable, exclusive, autoDelete);
+        }
+    }
+    public static class TasksBillingQueue extends Queue {
+        public TasksBillingQueue(String name, boolean durable, boolean exclusive, boolean autoDelete) {
+            super(name, durable, exclusive, autoDelete);
+        }
+    }
+    public static class TasksStreamBillingQueue extends Queue {
+        public TasksStreamBillingQueue(String name, boolean durable, boolean exclusive, boolean autoDelete) {
+            super(name, durable, exclusive, autoDelete);
+        }
+    }
+    public static class TasksPricesTaskTrackerQueue extends Queue {
+        public TasksPricesTaskTrackerQueue(String name, boolean durable, boolean exclusive, boolean autoDelete) {
             super(name, durable, exclusive, autoDelete);
         }
     }
