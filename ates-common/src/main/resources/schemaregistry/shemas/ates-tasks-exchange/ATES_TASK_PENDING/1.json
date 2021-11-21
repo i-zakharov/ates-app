@@ -6,7 +6,7 @@
     "EventData": {
       "type": "object",
       "properties": {
-        "taskPublicId": {
+        "publicId": {
           "type": "string"
         }
       },

@@ -31,7 +31,7 @@
     },
     "eventType": {
       "enum": [
-        "ATES_TASK_CLOSED"
+        "ATES_TASK_ASSIGNED"
       ]
     },
     "eventTime": {

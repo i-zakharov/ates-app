@@ -1,4 +1,4 @@
-package ru.zim.ates.auth.service.events;
+package ru.zim.ates.common.producer;
 
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;

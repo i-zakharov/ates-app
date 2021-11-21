@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ru.zim.ates.common.consumer.BaseConsumer;
 import ru.zim.ates.common.exception.AppException;
@@ -54,7 +55,8 @@ public class UsersStreamConsumer extends BaseConsumer {
         AppUser appUser;
         try {
             appUser = userService.create(dto);
-        } catch (ConstraintViolationException e) {
+
+        } catch (ConstraintViolationException | DataIntegrityViolationException e) {
             //Если не удалось создать пользователя из-за того, что такой уже есть, то попробуем сделать update, и обагатить его данными из события
             appUser = userService.update(dto);
         }

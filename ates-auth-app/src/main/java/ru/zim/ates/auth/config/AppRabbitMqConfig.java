@@ -1,9 +1,13 @@
 package ru.zim.ates.auth.config;
 
+import javax.annotation.PostConstruct;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,6 +29,23 @@ import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_TASK_TRACKER
 
 @Configuration
 public class AppRabbitMqConfig {
+
+    private RabbitAdmin admin;
+
+    @Autowired
+    private TasksPricesTaskTrackerQueue tasksPricesTaskTrackerQueue;
+
+    @Autowired
+    public AppRabbitMqConfig (ConnectionFactory connectionFactory) {
+        admin = new RabbitAdmin(connectionFactory);
+    }
+
+    @PostConstruct
+    public void cleanQueues() {
+        //Чтобы было проще выполнять отладку мы можем чистить некоторые очереди на старте
+        admin.purgeQueue(tasksPricesTaskTrackerQueue.getName(), false);
+    }
+
 
     /*
      * Topics

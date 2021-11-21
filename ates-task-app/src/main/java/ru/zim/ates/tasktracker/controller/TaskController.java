@@ -53,6 +53,20 @@ public class TaskController {
         Task task = taskService.create(dto);
         return "redirect:./card?id=" + task.getId();
     }
+
+    @PostMapping("/reassign")
+    public String reassign() {
+        taskService.reassignAll();
+        return "redirect:./list";
+    }
+
+    @PostMapping("/close")
+    public String close(ModelMap modelMap, @RequestParam("id") Long id) {
+        Task task = taskService.close(id);
+        modelMap.put("task", taskMapper.toResponceDto(task));
+        return "tasks/card";
+    }
+
     private List<AppUser> buildAssigneeList() {
         return assigneeRepository.findByIsActiveIsTrue();
     }

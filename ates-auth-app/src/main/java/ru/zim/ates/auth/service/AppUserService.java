@@ -16,8 +16,8 @@ import ru.zim.ates.auth.dto.AppUserUpdateRequestDto;
 import ru.zim.ates.auth.mapper.AppUserMapper;
 import ru.zim.ates.auth.model.AppUser;
 import ru.zim.ates.auth.repository.AppUserRepository;
-import ru.zim.ates.auth.service.events.ProducerNotifyEvent;
 import ru.zim.ates.common.exception.AppException;
+import ru.zim.ates.common.producer.ProducerNotifyEvent;
 import ru.zim.ates.common.schemaregistry.EventEnvelope;
 import ru.zim.ates.common.schemaregistry.EventType;
 

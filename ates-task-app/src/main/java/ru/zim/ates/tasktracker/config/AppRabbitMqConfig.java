@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersConsumer;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersStreamConsumer;
+import ru.zim.ates.tasktracker.service.TasksPricesConsumer;
 import ru.zim.ates.tasktracker.service.TestMessageConsumer;
 
 import static ru.zim.ates.common.schemaregistry.MqConfig.*;
@@ -40,6 +41,15 @@ public class AppRabbitMqConfig {
         container.setMessageListener(listenerAdapter);
         return container;
     }
+    @Bean
+    SimpleMessageListenerContainer tasksPricesQueueContainer(ConnectionFactory connectionFactory,
+            TasksPricesMessageListenerAdapter listenerAdapter) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setQueueNames(ATES_TASKS_PRICES_TASK_TRACKER_QUEUE);
+        container.setMessageListener(listenerAdapter);
+        return container;
+    }
 
     @Bean
     TestMessageMessageListenerAdapter testMessageListenerAdapter(TestMessageConsumer receiver) {
@@ -52,6 +62,11 @@ public class AppRabbitMqConfig {
     @Bean
     UsersMessageListenerAdapter usersListenerAdapter(UsersConsumer receiver) {
         return new UsersMessageListenerAdapter(receiver, "receiveMessage");
+    }
+
+    @Bean
+    TasksPricesMessageListenerAdapter tasksPricesMessageListenerAdapter(TasksPricesConsumer receiver) {
+        return new TasksPricesMessageListenerAdapter(receiver, "receiveMessage");
     }
 
 
@@ -67,6 +82,11 @@ public class AppRabbitMqConfig {
     }
     public static class UsersStreamMessageListenerAdapter extends MessageListenerAdapter {
         public UsersStreamMessageListenerAdapter(Object delegate, String defaultListenerMethod) {
+            super(delegate, defaultListenerMethod);
+        }
+    }
+    public static class TasksPricesMessageListenerAdapter extends MessageListenerAdapter {
+        public TasksPricesMessageListenerAdapter(Object delegate, String defaultListenerMethod) {
             super(delegate, defaultListenerMethod);
         }
     }

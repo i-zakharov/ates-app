@@ -8,10 +8,14 @@
       "properties": {
         "taskPublicId": {
           "type": "string"
+        },
+        "assigneePublicId": {
+          "type": "string"
         }
       },
       "required": [
-        "publicId"
+        "taskPublicId",
+        "assigneePublicId"
       ]
     }
   },

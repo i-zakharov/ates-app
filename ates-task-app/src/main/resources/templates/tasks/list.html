@@ -3,14 +3,29 @@
 >
 <head>
 	<meta charset="UTF-8"/>
-	<title>ates-auth</title>
+	<title>ates-task-tracker</title>
 </head>
 <body>
 <div>
 	<h1>Awesome Task Exchange System (ATES): сервис Task Tracker</h1>
 	<p>
-	<h3>Пользователи</h3>
-	<a th:href="@{./add}">Add new</a>
+	<h3>Задачи</h3>
+	<table>
+		<tr>
+			<td>
+				<a th:href="@{./add}">Add new</a>
+			</td>
+			<td>
+				<div>
+					<form method="post" action="./reassign" class="inline">
+						<button type="submit" name="submit_param" value="submit_value" class="link-button">
+							Переназначить все
+						</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
 	<table>
 		<tr>
 			<th>ID</th>
