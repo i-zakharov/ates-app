@@ -81,13 +81,14 @@ public class TaskService {
     }
 
     @Transactional
-    public Task setPrice(UUID publicId, BigDecimal price) {
+    public Task setPrice(UUID publicId, BigDecimal assignePrice, BigDecimal closePrice) {
         Task task = taskRepository.findAndLockByPublicId(publicId).orElseThrow(() ->
                 new AppException(String.format("Task with public id = %s not found", publicId)));
-        if (task.getPrice() != null || TaskStatus.PENDING != task.getStatus()) {
+        if (task.getAssignePrice() != null || task.getClosePrice() != null || TaskStatus.PENDING != task.getStatus()) {
             throw new AppException(String.format("Can't set price. Invalid state of task %s", publicId));
         }
-        task.setPrice(price);
+        task.setAssignePrice(assignePrice);
+        task.setClosePrice(closePrice);
         task.setStatus(TaskStatus.ASSIGNED);
         task = taskRepository.save(task);
         entityManager.flush();

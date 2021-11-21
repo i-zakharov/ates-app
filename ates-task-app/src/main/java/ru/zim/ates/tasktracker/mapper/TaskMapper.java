@@ -27,7 +27,8 @@ public class TaskMapper {
                 .description(task.getDescription())
                 .status(task.getStatus().name())
                 .assignee(task.getAssignee())
-                .price(task.getPrice())
+                .assignePrice(task.getAssignePrice())
+                .closePrice(task.getClosePrice())
                 .version(task.getVersion())
                 .build();
     }

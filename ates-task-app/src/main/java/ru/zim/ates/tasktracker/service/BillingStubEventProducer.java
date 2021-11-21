@@ -6,6 +6,7 @@ import java.util.Map;
 import lombok.SneakyThrows;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
@@ -17,6 +18,7 @@ import ru.zim.ates.common.schemaregistry.MqConfig;
 import ru.zim.ates.common.schemaregistry.utils.Utils;
 
 @Component
+@ConditionalOnProperty(prefix = "ru.zim.ates.tasktracker", name = "pricingStub", havingValue = "true")
 public class BillingStubEventProducer {
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -33,7 +35,8 @@ public class BillingStubEventProducer {
 
             Map<String, Object> priceEventFieldsMap = new HashMap<>();
             priceEventFieldsMap.put("publicId", publicId);
-            priceEventFieldsMap.put("price", BigDecimal.valueOf(99.99));
+            priceEventFieldsMap.put("assignePrice", BigDecimal.valueOf(-11.11));
+            priceEventFieldsMap.put("closePrice", BigDecimal.valueOf(99.99));
             EventEnvelope priceEvent = EventEnvelope.preSetBuilder()
                 .eventType(EventType.ATES_TASK_PRICE_SET)
                 .eventVersion("1")

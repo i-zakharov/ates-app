@@ -44,7 +44,8 @@ public class TasksPricesConsumer extends BaseConsumer {
     private void onTaskPriceSet(EventEnvelope eventEnvelope) {
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String publicId = eventFieldsMap.get("publicId").toString();
-        BigDecimal price = new BigDecimal(eventFieldsMap.get("price").toString());
-        taskService.setPrice(UUID.fromString(publicId), price);
+        BigDecimal assignePrice = new BigDecimal(eventFieldsMap.get("assignePrice").toString());
+        BigDecimal closePrice = new BigDecimal(eventFieldsMap.get("closePrice").toString());
+        taskService.setPrice(UUID.fromString(publicId), assignePrice, closePrice);
     }
 }

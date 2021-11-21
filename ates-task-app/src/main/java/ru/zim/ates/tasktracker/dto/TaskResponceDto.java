@@ -16,16 +16,19 @@ public class TaskResponceDto extends TaskDto {
     private UUID publicId;
     private String status;
     private AppUser assignee;
-    private BigDecimal price;
+    private BigDecimal assignePrice;
+    private BigDecimal closePrice;
     private Integer version;
+
     @Builder(builderMethodName = "responceBuilder")
-    public TaskResponceDto(String title, String description, Long id, UUID publicId, String status, AppUser assignee, BigDecimal price, Integer version) {
+    public TaskResponceDto(String title, String description, Long id, UUID publicId, String status, AppUser assignee, BigDecimal assignePrice, BigDecimal closePrice, Integer version) {
         super(title, description);
         this.id = id;
         this.publicId = publicId;
         this.status = status;
         this.assignee = assignee;
-        this.price = price;
+        this.assignePrice = assignePrice;
+        this.closePrice = closePrice;
         this.version = version;
     }
 }

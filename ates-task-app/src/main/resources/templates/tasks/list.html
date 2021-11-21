@@ -35,7 +35,8 @@
 			<th>Status</th>
 			<th>Assignee ID</th>
 			<th>Assignee Username</th>
-			<th>Price</th>
+			<th>Assigne price</th>
+			<th>Close price</th>
 			<th>Version</th>
 		</tr>
 		<tr th:each="task : ${tasks}">
@@ -46,7 +47,8 @@
 			<td th:text="${task.status}"></td>
 			<td th:text="${task.assignee.id}"></td>
 			<td th:text="${task.assignee.username}"></td>
-			<td th:text="${task.price}"></td>
+			<td th:text="${task.assignePrice}"></td>
+			<td th:text="${task.closePrice}"></td>
 			<td th:text="${task.version}"></td>
 			<td><a th:href="@{./card?id={id} (id=${task.id})}">Go to card</a></td>
 		</tr>

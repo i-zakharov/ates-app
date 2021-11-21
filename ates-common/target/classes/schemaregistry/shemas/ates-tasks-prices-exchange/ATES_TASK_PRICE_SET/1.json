@@ -9,13 +9,19 @@
         "publicId": {
           "type": "string"
         },
-        "price": {
-          "type": "number"
+        "assignePrice": {
+          "type": "number",
+          "exclusiveMaximum": 0
+        },
+        "closePrice": {
+          "type": "number",
+          "exclusiveMinimum": 0
         }
       },
       "required": [
         "publicId",
-        "price"
+        "assignePrice",
+        "closePrice"
       ]
     }
   },

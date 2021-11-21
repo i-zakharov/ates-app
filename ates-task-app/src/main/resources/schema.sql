@@ -23,7 +23,8 @@ CREATE TABLE Task
     description  VARCHAR(5000),
     status  VARCHAR(250) NOT NULL,
     assignee_id BIGINT  NOT NULL,
-    price DECIMAL(20, 2),
+    assigne_price DECIMAL(20, 2),
+    close_price DECIMAL(20, 2),
     version   INT  NOT NULL,
     foreign key (assignee_id) references app_user(id)
 );

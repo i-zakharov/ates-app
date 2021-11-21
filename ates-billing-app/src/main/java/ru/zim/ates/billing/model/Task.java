@@ -1,6 +1,7 @@
-package ru.zim.ates.tasktracker.model;
+package ru.zim.ates.billing.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ import ru.zim.ates.common.standartimpl.consumer.user.model.AppUser;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TASK")
+@Table(name = "task")
 public class Task {
     @Id
     @Column(name = "id")
@@ -38,11 +39,8 @@ public class Task {
     private UUID publicId;
     @Column(name = "title")
     private String title;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private TaskStatus status;
+    @Column(name = "is_closed")
+    private Boolean isClosed;
     @ManyToOne
     @JoinColumn(name="assignee_id", nullable=false)
     private AppUser assignee;
