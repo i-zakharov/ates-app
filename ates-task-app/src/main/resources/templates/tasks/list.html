@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-task-tracker</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис Task Tracker</h1>
+	<p>
+	<h3>Задачи</h3>
+	<table>
+		<tr>
+			<td>
+				<a th:href="@{./add}">Add new</a>
+			</td>
+			<td>
+				<div>
+					<form method="post" action="./reassign" class="inline">
+						<button type="submit" name="submit_param" value="submit_value" class="link-button">
+							Переназначить все
+						</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Public ID</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Status</th>
+			<th>Assignee ID</th>
+			<th>Assignee Username</th>
+			<th>Assigne price</th>
+			<th>Close price</th>
+			<th>Version</th>
+		</tr>
+		<tr th:each="task : ${tasks}">
+			<td th:text="${task.id}"></td>
+			<td th:text="${task.publicId}"></td>
+			<td th:text="${task.title}"></td>
+			<td th:text="${task.description}"></td>
+			<td th:text="${task.status}"></td>
+			<td th:text="${task.assignee.id}"></td>
+			<td th:text="${task.assignee.username}"></td>
+			<td th:text="${task.assignePrice}"></td>
+			<td th:text="${task.closePrice}"></td>
+			<td th:text="${task.version}"></td>
+			<td><a th:href="@{./card?id={id} (id=${task.id})}">Go to card</a></td>
+		</tr>
+	</table>
+
+	</p>
+</div>
+</body>
+</html>

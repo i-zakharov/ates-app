@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ates-tasks-exchange.ATES_TASK_PENDING.v1",
+  "description": "json schema for ATES_TASK_PENDING event (version 1)",
+  "definitions": {
+    "EventData": {
+      "type": "object",
+      "properties": {
+        "publicId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "publicId"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventVersion": {
+      "enum": [
+        "1"
+      ]
+    },
+    "eventType": {
+      "enum": [
+        "ATES_TASK_PENDING"
+      ]
+    },
+    "eventTime": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/definitions/EventData"
+    }
+  },
+  "required": [
+    "eventId",
+    "eventVersion",
+    "eventType",
+    "eventTime",
+    "producer",
+    "data"
+  ]
+}

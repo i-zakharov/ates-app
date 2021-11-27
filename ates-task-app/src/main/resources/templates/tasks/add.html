@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-task-tracker</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис Task Tracker</h1>
+	<p>
+	<h3>Добавление задачи</h3>
+	<form action="#" th:action="@{./add}" th:object="${task}" method="post">
+		<div class="row">
+			<div>
+				<label for="name">Title</label>
+				<input type="text" th:field="*{title}"
+					   id="title" placeholder="Some task"/>
+			</div>
+			<div>
+				<label for="name">Description</label>
+				<textarea rows="10" th:field="*{description}"
+					   id="description" placeholder=""/>
+			</div>
+			<div>
+				<div th:if="${users != null and not #lists.isEmpty(users)}">
+					<label for="name">Assignee</label>
+					<select th:field="*{assigneeId}">
+						<option th:each="dropDownItem : ${users}"
+								th:value="${dropDownItem.id}"
+								th:text="${dropDownItem.username}"/>
+					</select>
+				</div>
+			</div>
+			<div>
+				<input type="submit" value=" Submit ">
+			</div>
+		</div>
+	</form>
+	<a th:href="@{./list}">Back to list</a>
+</div>
+</body>
+</html>

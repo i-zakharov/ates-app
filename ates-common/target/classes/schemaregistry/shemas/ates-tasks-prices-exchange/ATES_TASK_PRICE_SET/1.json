@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ates-tasks-prices-exchange.ATES_TASK_PRICE_SET.v1",
+  "description": "json schema for ATES_TASK_PRICE_SET event (version 1)",
+  "definitions": {
+    "EventData": {
+      "type": "object",
+      "properties": {
+        "publicId": {
+          "type": "string"
+        },
+        "assignePrice": {
+          "type": "number",
+          "exclusiveMaximum": 0
+        },
+        "closePrice": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "publicId",
+        "assignePrice",
+        "closePrice"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventVersion": {
+      "enum": [
+        "1"
+      ]
+    },
+    "eventType": {
+      "enum": [
+        "ATES_TASK_PRICE_SET"
+      ]
+    },
+    "eventTime": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/definitions/EventData"
+    }
+  },
+  "required": [
+    "eventId",
+    "eventVersion",
+    "eventType",
+    "eventTime",
+    "producer",
+    "data"
+  ]
+}

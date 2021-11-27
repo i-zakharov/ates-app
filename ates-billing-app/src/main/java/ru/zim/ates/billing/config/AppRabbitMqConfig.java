@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.zim.ates.billing.service.TasksConsumer;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersConsumer;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersStreamConsumer;
 import ru.zim.ates.billing.service.TestMessageConsumer;
@@ -33,10 +34,19 @@ public class AppRabbitMqConfig {
     }
     @Bean
     SimpleMessageListenerContainer usersQueueContainer(ConnectionFactory connectionFactory,
-            UsersMessageListenerAdapter listenerAdapter) {
+                    UsersMessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         container.setQueueNames(ATES_USERS_BILLING_QUEUE);
+        container.setMessageListener(listenerAdapter);
+        return container;
+    }
+    @Bean
+    SimpleMessageListenerContainer tasksQueueContainer(ConnectionFactory connectionFactory,
+            TasksMessageListenerAdapter listenerAdapter) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setQueueNames(ATES_TASKS_BILLING_QUEUE);
         container.setMessageListener(listenerAdapter);
         return container;
     }
@@ -53,6 +63,10 @@ public class AppRabbitMqConfig {
     UsersMessageListenerAdapter usersListenerAdapter(UsersConsumer receiver) {
         return new UsersMessageListenerAdapter(receiver, "receiveMessage");
     }
+    @Bean
+    TasksMessageListenerAdapter tasksListenerAdapter(TasksConsumer receiver) {
+        return new TasksMessageListenerAdapter(receiver, "receiveMessage");
+    }
 
 
     public static class TestMessageMessageListenerAdapter extends MessageListenerAdapter {
@@ -67,6 +81,11 @@ public class AppRabbitMqConfig {
     }
     public static class UsersStreamMessageListenerAdapter extends MessageListenerAdapter {
         public UsersStreamMessageListenerAdapter(Object delegate, String defaultListenerMethod) {
+            super(delegate, defaultListenerMethod);
+        }
+    }
+    public static class TasksMessageListenerAdapter extends MessageListenerAdapter {
+        public TasksMessageListenerAdapter(Object delegate, String defaultListenerMethod) {
             super(delegate, defaultListenerMethod);
         }
     }

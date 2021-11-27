@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html
+>
+<head>
+	<meta charset="UTF-8"/>
+	<title>ates-task-tracker</title>
+</head>
+<body>
+<div>
+	<h1>Awesome Task Exchange System (ATES): сервис Task Tracker</h1>
+	<p>
+	<h3>Карточка задачи</h3>
+	<table>
+		<tr>
+			<td>id:</td>
+			<td th:text="${task.id}"></td>
+		</tr>
+		<tr>
+			<td>Public Id:</td>
+			<td th:text="${task.publicId}"></td>
+		</tr>
+		<tr>
+			<td>Assignee:</td>
+			<td th:text="${task.assignee.username}"></td>
+		</tr>
+		<tr>
+			<td>Assignee Id:</td>
+			<td th:text="${task.assignee.id}"></td>
+		</tr>
+		<tr>
+			<td>Assignee Id:</td>
+			<td th:text="${task.assignee.publicId}"></td>
+		</tr>
+		<tr>
+			<td>Title</td>
+			<td th:text="${task.title}"></td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td th:text="${task.description}"></td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td th:text="${task.status}"></td>
+		</tr>
+		<tr>
+			<td>Assigne Price</td>
+			<td th:text="${task.assignePrice}"></td>
+		</tr>
+		<tr>
+			<td>Close price</td>
+			<td th:text="${task.closePrice}"></td>
+		</tr>
+		<tr>
+			<td>Version</td>
+			<td th:text="${task.version}"></td>
+		</tr>
+		<tr>
+			<td>
+				<form method="post" action="./edit" class="inline">
+					<input type="hidden" name="id" th:value="${task.id}">
+					<button type="submit" name="submit_param" value="submit_value" class="link-button">
+						Edit
+					</button>
+				</form>
+			</td>
+			<td>
+				<div th:if="${task.status == 'ASSIGNED'}">
+					<form method="post" action="./close" class="inline">
+						<input type="hidden" name="id" th:value="${task.id}">
+						<button type="submit" name="submit_param" value="submit_value" class="link-button">
+							Close
+						</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<a th:href="@{./list}">Back to list</a>
+</div>
+</body>
+</html>

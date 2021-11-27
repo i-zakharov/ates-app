@@ -1,14 +1,14 @@
-package ru.zim.ates.auth.service.events;
+package ru.zim.ates.common.producer;
 
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 import ru.zim.ates.common.schemaregistry.EventEnvelope;
 
 @Getter
-public class UsersProducerNotifyEvent extends ApplicationEvent {
+public class ProducerNotifyEvent extends ApplicationEvent {
     private EventEnvelope eventEnvelope;
 
-    public UsersProducerNotifyEvent(Object source, EventEnvelope eventEnvelope) {
+    public ProducerNotifyEvent(Object source, EventEnvelope eventEnvelope) {
         super(source);
         this.eventEnvelope = eventEnvelope;
     }

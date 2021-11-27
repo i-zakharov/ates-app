@@ -1,4 +1,4 @@
-package ru.zim.ates.tasktracker.dto;
+package ru.zim.ates.common.standartimpl.consumer.user.dto;
 
 import lombok.Builder;
 import lombok.Data;
