@@ -2,12 +2,14 @@ package ru.zim.ates.billing.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import ru.zim.ates.common.consumer.BaseConsumer;
+import ru.zim.ates.common.exception.AppException;
 import ru.zim.ates.common.producer.ProducerNotifyEvent;
 import ru.zim.ates.common.schemaregistry.EventEnvelope;
 import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
@@ -20,7 +22,7 @@ public class TasksConsumer extends BaseConsumer {
     @Autowired
     private EventSchemaRegistry eventSchemaRegistry;
     @Autowired
-    private PricingService pricingService;
+    private BillingFacadeService billingFacadeService;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -37,6 +39,12 @@ public class TasksConsumer extends BaseConsumer {
             case ATES_TASK_PENDING:
                 onTaskPending(eventEnvelope);
                 break;
+            case ATES_TASK_ASSIGNED:
+                onTaskAssigned(eventEnvelope);
+                break;
+            case ATES_TASK_CLOSED:
+                onTaskClosed(eventEnvelope);
+                break;
             default:
                 break; //Пока игнорируем неизвестные сообщения
                 //throw new AppException(String.format("Unexpect event type: %s", eventEnvelope.getEventType()));
@@ -45,13 +53,29 @@ public class TasksConsumer extends BaseConsumer {
     }
 
     @SneakyThrows
+    private void onTaskClosed(EventEnvelope eventEnvelope) {
+        assertVersion(eventEnvelope, "1");
+        Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
+        String taskPublicId = eventFieldsMap.get("taskPublicId").toString();
+        String assigneePublicId = eventFieldsMap.get("assigneePublicId").toString();
+        billingFacadeService.closeTask(UUID.fromString(taskPublicId), UUID.fromString(assigneePublicId));
+    }
+
+    @SneakyThrows
+    private void onTaskAssigned(EventEnvelope eventEnvelope) {
+        assertVersion(eventEnvelope, "1");
+        Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
+        String taskPublicId = eventFieldsMap.get("taskPublicId").toString();
+        String assigneePublicId = eventFieldsMap.get("assigneePublicId").toString();
+    }
+
+    @SneakyThrows
     private void onTaskPending(EventEnvelope eventEnvelope) {
+        assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String publicId = eventFieldsMap.get("publicId").toString();
-        PricingService.TaskPrices prices = pricingService.getPrices();
-        //TODO добавить сохранение
+        PricingService.TaskPrices prices = billingFacadeService.calculateAndSetTaskPrice(UUID.fromString(publicId));
         sendTaskPriceSet(publicId, prices);
-
     }
 
     private void sendTaskPriceSet (String publicId, PricingService.TaskPrices prices) {
@@ -66,4 +90,5 @@ public class TasksConsumer extends BaseConsumer {
                 .data(priceEventFieldsMap).build();
         applicationEventPublisher.publishEvent(new ProducerNotifyEvent(this, event));
     }
+
 }

@@ -25,6 +25,6 @@ public interface MqConfig {
     public static final String ATES_TASKS_PRICES_EXCHANGE = "ates-tasks-prices-exchange";
 
     public static final String ATES_TASKS_STREAM_EXCHANGE = "ates-tasks-stream-exchange";
-    public static final String ATES_TASKS_STREAM_BILLING_QUEUE = "ates-tasks-billing-queue";
+    public static final String ATES_TASKS_STREAM_BILLING_QUEUE = "ates-tasks-stream-billing-queue";
 
 }

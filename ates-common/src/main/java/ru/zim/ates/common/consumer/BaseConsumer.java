@@ -5,11 +5,20 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import ru.zim.ates.common.exception.AppException;
+import ru.zim.ates.common.schemaregistry.EventEnvelope;
 
 @Slf4j
 public abstract class BaseConsumer {
 
     protected static final int MAX_ERRORS_COUNT = 5;
+
+    protected static void assertVersion(EventEnvelope eventEnvelope, String version) {
+        if (!version.equals(eventEnvelope.getEventVersion())) {
+            throw new AppException(String.format("Not supported event version: %s for event %s", eventEnvelope.getEventVersion(),
+                    eventEnvelope.getEventType()));
+        }
+    }
 
     protected AtomicInteger errorsCounter = new AtomicInteger(0);
     protected ApplicationContext applicationContext;
