@@ -1,10 +1,12 @@
 package ru.zim.ates.common.standartimpl.consumer.user.dto;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class AppUserResponceDto extends AppUserFromEventDto {
     private Long id;

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.zim.ates.common.model.AppRole;
+import ru.zim.ates.common.application.model.AppRole;
 import ru.zim.ates.common.standartimpl.consumer.user.dto.AppUserFromEventDto;
 import ru.zim.ates.common.standartimpl.consumer.user.mapper.AppUserMapper;
 import ru.zim.ates.common.standartimpl.consumer.user.model.AppUser;
