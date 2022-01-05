@@ -8,7 +8,7 @@ import ru.zim.ates.billing.dto.TaskFromEventDto;
 import ru.zim.ates.billing.mapper.TaskMapper;
 import ru.zim.ates.billing.model.Task;
 import ru.zim.ates.billing.repository.TaskRepository;
-import ru.zim.ates.common.exception.AppException;
+import ru.zim.ates.common.application.exception.AppException;
 import ru.zim.ates.common.standartimpl.consumer.user.repository.AppUserRepository;
 
 @Service

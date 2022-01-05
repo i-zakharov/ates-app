@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.zim.ates.auth.dto.AppUserCreateRequestDto;
 import ru.zim.ates.auth.mapper.AppUserMapper;
 import ru.zim.ates.auth.model.AppUser;
-import ru.zim.ates.common.model.AppRole;
+import ru.zim.ates.common.application.model.AppRole;
 
 @Service
 @Slf4j

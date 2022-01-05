@@ -3,6 +3,8 @@ package ru.zim.ates.common.messaging.consumer;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +43,7 @@ public class IncomingEvent {
     private String consumerError;
     @Column(name = "RETRY_COUNTER")
     private Integer retryCounter;
+    @Enumerated(EnumType.STRING)
     @Column(name = "STATUS")
     private IncomingEventStatus status;
     @Column(name = "PARSED_TYPE")

@@ -24,7 +24,7 @@ public abstract class AbortOnErrorConsumer implements AbstractConsumer {
         try {
             processMessage(message);
             errorsCounter.set(0);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             onError(e);
         }
     }

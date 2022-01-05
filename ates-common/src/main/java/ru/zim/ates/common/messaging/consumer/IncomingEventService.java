@@ -1,5 +1,6 @@
 package ru.zim.ates.common.messaging.consumer;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,8 +35,9 @@ public class IncomingEventService {
                     .parsedVersion(eventEnvelope.getEventVersion());
 
             incomingEventBuilder.status(IncomingEventStatus.NEW);
+            resultBuilder.eventEnvelope(eventEnvelope);
             resultBuilder.isParseSuccess(true);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             String errorText = Utils.formatExceptionForLogging(e);
             log.error("Error while parseAndSave: {}", errorText);
             incomingEventBuilder.consumerError(errorText).status(IncomingEventStatus.ERROR);
@@ -50,6 +52,7 @@ public class IncomingEventService {
     public IncomingEvent markAsProcessed(Long id) {
         IncomingEvent incomingEvent = incomingEventRepository.findById(id).orElseThrow(()
                 -> new IllegalArgumentException(String.format("Event with id=%d not found", id)));
+        incomingEvent.setProcessingTime(LocalDateTime.now());
         incomingEvent.setStatus(IncomingEventStatus.PROCESSED);
         return incomingEventRepository.save(incomingEvent);
     }

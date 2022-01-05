@@ -8,17 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import ru.zim.ates.common.consumer.BaseConsumer;
-import ru.zim.ates.common.exception.AppException;
-import ru.zim.ates.common.producer.ProducerNotifyEvent;
-import ru.zim.ates.common.schemaregistry.EventEnvelope;
-import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
-import ru.zim.ates.common.schemaregistry.EventType;
-import ru.zim.ates.common.schemaregistry.MqConfig;
-import ru.zim.ates.common.schemaregistry.utils.Utils;
+import ru.zim.ates.common.application.exception.AppException;
+import ru.zim.ates.common.messaging.config.AppEventType;
+import ru.zim.ates.common.messaging.consumer.AbstractConsumer;
+import ru.zim.ates.common.messaging.consumer.PersistEventConsumer;
+import ru.zim.ates.common.messaging.producer.ProducerNotifyEvent;
+import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
+import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
+import ru.zim.ates.common.messaging.schemaregistry.EventType;
+import ru.zim.ates.common.messaging.config.MqConfig;
+import ru.zim.ates.common.messaging.utils.Utils;
 
 @Service
-public class TasksConsumer extends BaseConsumer {
+public class TasksConsumer extends PersistEventConsumer {
     @Autowired
     private EventSchemaRegistry eventSchemaRegistry;
     @Autowired
@@ -26,15 +28,10 @@ public class TasksConsumer extends BaseConsumer {
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
-    @Autowired
-    public TasksConsumer(ApplicationContext applicationContext) {
-        super(applicationContext);
-    }
 
     @SneakyThrows
     @Override
-    protected void processMessage(String message) {
-        EventEnvelope eventEnvelope = eventSchemaRegistry.parseAndValidate(message);
+    protected void processMessage(EventEnvelope eventEnvelope) {
         switch (eventEnvelope.getEventType()) {
             case ATES_TASK_PENDING:
                 onTaskPending(eventEnvelope);
@@ -54,7 +51,7 @@ public class TasksConsumer extends BaseConsumer {
 
     @SneakyThrows
     private void onTaskClosed(EventEnvelope eventEnvelope) {
-        assertVersion(eventEnvelope, "1");
+        AbstractConsumer.assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String taskPublicId = eventFieldsMap.get("taskPublicId").toString();
         String assigneePublicId = eventFieldsMap.get("assigneePublicId").toString();
@@ -63,7 +60,7 @@ public class TasksConsumer extends BaseConsumer {
 
     @SneakyThrows
     private void onTaskAssigned(EventEnvelope eventEnvelope) {
-        assertVersion(eventEnvelope, "1");
+        AbstractConsumer.assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String taskPublicId = eventFieldsMap.get("taskPublicId").toString();
         String assigneePublicId = eventFieldsMap.get("assigneePublicId").toString();
@@ -71,7 +68,7 @@ public class TasksConsumer extends BaseConsumer {
 
     @SneakyThrows
     private void onTaskPending(EventEnvelope eventEnvelope) {
-        assertVersion(eventEnvelope, "1");
+        AbstractConsumer.assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String publicId = eventFieldsMap.get("publicId").toString();
         PricingService.TaskPrices prices = billingFacadeService.calculateAndSetTaskPrice(UUID.fromString(publicId));
@@ -84,7 +81,7 @@ public class TasksConsumer extends BaseConsumer {
         priceEventFieldsMap.put("assignePrice", prices.getAssignePrice());
         priceEventFieldsMap.put("closePrice", prices.getClosePrice());
         EventEnvelope event = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_PRICE_SET)
+                .eventType(AppEventType.ATES_TASK_PRICE_SET)
                 .eventVersion("1")
                 .producer(MqConfig.ATES_BILLING_PRODUCER_NAME)
                 .data(priceEventFieldsMap).build();

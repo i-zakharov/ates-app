@@ -9,11 +9,11 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
-import ru.zim.ates.common.producer.ProducerNotifyEvent;
-import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
-import ru.zim.ates.common.schemaregistry.EventType;
-import ru.zim.ates.common.schemaregistry.MqConfig;
-import ru.zim.ates.common.schemaregistry.utils.Utils;
+import ru.zim.ates.common.messaging.config.AppEventType;
+import ru.zim.ates.common.messaging.config.MqConfig;
+import ru.zim.ates.common.messaging.producer.ProducerNotifyEvent;
+import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
+import ru.zim.ates.common.messaging.utils.Utils;
 
 @Component
 @Slf4j
@@ -38,7 +38,7 @@ public class EventProducer {
         String rawMessage = Utils.mapper.writeValueAsString(producerNotifyEvent.getEventEnvelope());
         eventSchemaRegistry.parseAndValidate(rawMessage);
         String exchangeName;
-        if (EventType.ATES_TASK_PRICE_SET == producerNotifyEvent.getEventEnvelope().getEventType()) {
+        if (AppEventType.ATES_TASK_PRICE_SET == producerNotifyEvent.getEventEnvelope().getEventType()) {
             exchangeName = MqConfig.ATES_TASKS_PRICES_EXCHANGE;
         } else {
             throw new NotImplementedException("TODO");

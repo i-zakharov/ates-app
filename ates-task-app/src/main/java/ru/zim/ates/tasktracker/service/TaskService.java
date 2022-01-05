@@ -14,10 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.zim.ates.common.exception.AppException;
-import ru.zim.ates.common.producer.ProducerNotifyEvent;
-import ru.zim.ates.common.schemaregistry.EventEnvelope;
-import ru.zim.ates.common.schemaregistry.EventType;
+import ru.zim.ates.common.application.exception.AppException;
+import ru.zim.ates.common.messaging.config.AppEventType;
+import ru.zim.ates.common.messaging.producer.ProducerNotifyEvent;
+import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
+import ru.zim.ates.common.messaging.schemaregistry.EventType;
 import ru.zim.ates.common.standartimpl.consumer.user.model.AppUser;
 import ru.zim.ates.common.standartimpl.consumer.user.repository.AppUserRepository;
 import ru.zim.ates.tasktracker.dto.TaskCreateRequestDto;
@@ -27,7 +28,7 @@ import ru.zim.ates.tasktracker.model.TaskStatus;
 import ru.zim.ates.tasktracker.repository.AssigneeRepository;
 import ru.zim.ates.tasktracker.repository.TaskRepository;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASK_TRACKER_PRODUCER_NAME;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASK_TRACKER_PRODUCER_NAME;
 
 @Service
 @Slf4j
@@ -62,7 +63,7 @@ public class TaskService {
         taskRepository.save(task);
 
         EventEnvelope eventEnvelope = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_CREATED)
+                .eventType(AppEventType.ATES_TASK_CREATED)
                 .producer(ATES_TASK_TRACKER_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(taskMapper.toResponceDto(task)).build();
@@ -71,7 +72,7 @@ public class TaskService {
         Map<String, Object> data = new HashMap<>();
         data.put("publicId", task.getPublicId());
         EventEnvelope taskPendingEvent = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_PENDING)
+                .eventType(AppEventType.ATES_TASK_PENDING)
                 .producer(ATES_TASK_TRACKER_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(data).build();
@@ -140,7 +141,7 @@ public class TaskService {
         data.put("taskPublicId", task.getPublicId());
         data.put("assigneePublicId", task.getAssignee().getPublicId());
         EventEnvelope event = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_ASSIGNED)
+                .eventType(AppEventType.ATES_TASK_ASSIGNED)
                 .producer(ATES_TASK_TRACKER_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(data).build();
@@ -152,7 +153,7 @@ public class TaskService {
         data.put("taskPublicId", task.getPublicId());
         data.put("assigneePublicId", task.getAssignee().getPublicId());
         EventEnvelope event = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_CLOSED)
+                .eventType(AppEventType.ATES_TASK_CLOSED)
                 .producer(ATES_TASK_TRACKER_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(data).build();
@@ -162,7 +163,7 @@ public class TaskService {
     private void sendTaskUpdatedEvent (Task task) {
 
         EventEnvelope event = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_UPDATED)
+                .eventType(AppEventType.ATES_TASK_UPDATED)
                 .producer(ATES_TASK_TRACKER_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(taskMapper.toResponceDto(task)).build();

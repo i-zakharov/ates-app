@@ -10,9 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.zim.ates.common.schemaregistry.EventEnvelope;
-import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
-import ru.zim.ates.common.schemaregistry.utils.Utils;
+import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
+import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
+import ru.zim.ates.common.messaging.utils.Utils;
 
 @Component
 @Slf4j

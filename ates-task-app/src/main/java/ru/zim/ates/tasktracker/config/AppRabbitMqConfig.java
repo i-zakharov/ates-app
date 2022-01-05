@@ -10,7 +10,7 @@ import ru.zim.ates.common.standartimpl.consumer.user.service.UsersStreamConsumer
 import ru.zim.ates.tasktracker.service.TasksPricesConsumer;
 import ru.zim.ates.tasktracker.service.TestMessageConsumer;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.*;
+import static ru.zim.ates.common.messaging.config.MqConfig.*;
 
 @Configuration
 public class AppRabbitMqConfig {

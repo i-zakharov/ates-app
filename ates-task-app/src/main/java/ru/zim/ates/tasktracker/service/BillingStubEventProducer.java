@@ -10,12 +10,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
-import ru.zim.ates.common.producer.ProducerNotifyEvent;
-import ru.zim.ates.common.schemaregistry.EventEnvelope;
-import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
-import ru.zim.ates.common.schemaregistry.EventType;
-import ru.zim.ates.common.schemaregistry.MqConfig;
-import ru.zim.ates.common.schemaregistry.utils.Utils;
+import ru.zim.ates.common.messaging.config.AppEventType;
+import ru.zim.ates.common.messaging.producer.ProducerNotifyEvent;
+import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
+import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
+import ru.zim.ates.common.messaging.schemaregistry.EventType;
+import ru.zim.ates.common.messaging.config.MqConfig;
+import ru.zim.ates.common.messaging.utils.Utils;
 
 @Component
 @ConditionalOnProperty(prefix = "ru.zim.ates.tasktracker", name = "pricingStub", havingValue = "true")
@@ -29,7 +30,7 @@ public class BillingStubEventProducer {
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void processEvent(ProducerNotifyEvent producerNotifyEvent) {
 
-        if (EventType.ATES_TASK_PENDING.equals(producerNotifyEvent.getEventEnvelope().getEventType())) {
+        if (AppEventType.ATES_TASK_PENDING.equals(producerNotifyEvent.getEventEnvelope().getEventType())) {
             Map<String, Object> eventFieldsMap = (Map<String, Object>) producerNotifyEvent.getEventEnvelope().getData();
             String publicId = eventFieldsMap.get("publicId").toString();
 
@@ -38,7 +39,7 @@ public class BillingStubEventProducer {
             priceEventFieldsMap.put("assignePrice", BigDecimal.valueOf(-11.11));
             priceEventFieldsMap.put("closePrice", BigDecimal.valueOf(99.99));
             EventEnvelope priceEvent = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_TASK_PRICE_SET)
+                .eventType(AppEventType.ATES_TASK_PRICE_SET)
                 .eventVersion("1")
                 .producer(MqConfig.ATES_TASK_TRACKER_PRODUCER_NAME)
                 .data(priceEventFieldsMap).build();

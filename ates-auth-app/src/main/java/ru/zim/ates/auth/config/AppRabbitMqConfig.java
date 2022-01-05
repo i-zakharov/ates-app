@@ -12,21 +12,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_PRICES_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_PRICES_TASK_TRACKER_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_STREAM_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_STREAM_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_ROOTING_KEY;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_TASK_TRACKER_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_PRICES_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_PRICES_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_STREAM_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_STREAM_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TEST_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TEST_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TEST_ROOTING_KEY;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_TASK_TRACKER_QUEUE;
 
 @Configuration
 public class AppRabbitMqConfig {

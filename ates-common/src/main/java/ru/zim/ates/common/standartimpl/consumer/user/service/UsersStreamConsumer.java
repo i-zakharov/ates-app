@@ -4,11 +4,10 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ru.zim.ates.common.application.exception.AppException;
-import ru.zim.ates.common.messaging.consumer.AbortOnErrorConsumer;
+import ru.zim.ates.common.messaging.consumer.PersistEventConsumer;
 import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
 import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
 import ru.zim.ates.common.messaging.utils.Utils;
@@ -17,22 +16,17 @@ import ru.zim.ates.common.standartimpl.consumer.user.model.AppUser;
 
 @Service
 @Slf4j
-public class UsersStreamConsumer extends AbortOnErrorConsumer {
+public class UsersStreamConsumer extends PersistEventConsumer {
 
     @Autowired
     private EventSchemaRegistry eventSchemaRegistry;
     @Autowired
     private AppUserService userService;
 
-    @Autowired
-    public UsersStreamConsumer(ApplicationContext applicationContext) {
-        super(applicationContext);
-    }
-
     @SneakyThrows
     @Override
-    protected void processMessage(String message) {
-        EventEnvelope eventEnvelope = eventSchemaRegistry.parseAndValidate(message);
+    protected void processMessage(EventEnvelope eventEnvelope) {
+
         switch (eventEnvelope.getEventType()) {
             case ATES_USER_CREATED:
                 onUserCreated(eventEnvelope);

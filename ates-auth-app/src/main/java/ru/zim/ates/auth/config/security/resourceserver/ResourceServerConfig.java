@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.security.web.context.SecurityContextPersistenceFilter;
-import ru.zim.ates.common.config.security.AuthHeaderHandlingFilter;
+import ru.zim.ates.common.application.config.security.AuthHeaderHandlingFilter;
 
 /**
  * @Author : Amran Hosssain on 6/24/2020
