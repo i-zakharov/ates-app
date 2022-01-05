@@ -14,7 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.zim.ates.common.model.AppRole;
+import ru.zim.ates.common.application.model.AppRole;
 
 @Data
 @Getter

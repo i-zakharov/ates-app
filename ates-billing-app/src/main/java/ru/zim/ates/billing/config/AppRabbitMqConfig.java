@@ -6,11 +6,12 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.zim.ates.billing.service.TasksConsumer;
+import ru.zim.ates.billing.service.TasksStreamConsumer;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersConsumer;
 import ru.zim.ates.common.standartimpl.consumer.user.service.UsersStreamConsumer;
 import ru.zim.ates.billing.service.TestMessageConsumer;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.*;
+import static ru.zim.ates.common.messaging.config.MqConfig.*;
 
 @Configuration
 public class AppRabbitMqConfig {
@@ -50,6 +51,15 @@ public class AppRabbitMqConfig {
         container.setMessageListener(listenerAdapter);
         return container;
     }
+    @Bean
+    SimpleMessageListenerContainer tasksStreamQueueContainer(ConnectionFactory connectionFactory,
+            TasksStreamMessageListenerAdapter listenerAdapter) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setQueueNames(ATES_TASKS_STREAM_BILLING_QUEUE);
+        container.setMessageListener(listenerAdapter);
+        return container;
+    }
 
     @Bean
     TestMessageMessageListenerAdapter testMessageListenerAdapter(TestMessageConsumer receiver) {
@@ -66,6 +76,10 @@ public class AppRabbitMqConfig {
     @Bean
     TasksMessageListenerAdapter tasksListenerAdapter(TasksConsumer receiver) {
         return new TasksMessageListenerAdapter(receiver, "receiveMessage");
+    }
+    @Bean
+    TasksStreamMessageListenerAdapter tasksStreamMessageListenerAdapter(TasksStreamConsumer receiver) {
+        return new TasksStreamMessageListenerAdapter(receiver, "receiveMessage");
     }
 
 
@@ -86,6 +100,11 @@ public class AppRabbitMqConfig {
     }
     public static class TasksMessageListenerAdapter extends MessageListenerAdapter {
         public TasksMessageListenerAdapter(Object delegate, String defaultListenerMethod) {
+            super(delegate, defaultListenerMethod);
+        }
+    }
+    public static class TasksStreamMessageListenerAdapter extends MessageListenerAdapter {
+        public TasksStreamMessageListenerAdapter(Object delegate, String defaultListenerMethod) {
             super(delegate, defaultListenerMethod);
         }
     }

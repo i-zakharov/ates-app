@@ -16,12 +16,12 @@ import ru.zim.ates.auth.dto.AppUserUpdateRequestDto;
 import ru.zim.ates.auth.mapper.AppUserMapper;
 import ru.zim.ates.auth.model.AppUser;
 import ru.zim.ates.auth.repository.AppUserRepository;
-import ru.zim.ates.common.exception.AppException;
-import ru.zim.ates.common.producer.ProducerNotifyEvent;
-import ru.zim.ates.common.schemaregistry.EventEnvelope;
-import ru.zim.ates.common.schemaregistry.EventType;
+import ru.zim.ates.common.application.exception.AppException;
+import ru.zim.ates.common.messaging.config.AppEventType;
+import ru.zim.ates.common.messaging.producer.ProducerNotifyEvent;
+import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_AUTH_PRODUCER_NAME;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_AUTH_PRODUCER_NAME;
 
 @Service
 public class AppUserService {
@@ -55,7 +55,7 @@ public class AppUserService {
         userRepository.save(appUser);
         //Создаем событие для отправки в другие сервисы
         EventEnvelope eventEnvelope = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_USER_CREATED)
+                .eventType(AppEventType.ATES_USER_CREATED)
                 .producer(ATES_AUTH_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(userMapper.toResponceDto(appUser)).build();
@@ -78,7 +78,7 @@ public class AppUserService {
         // По хорошему для нашей задачи лучше реализовать версию руками, а не через @Version , т.к. @Version по хорошумя для другого
 
         EventEnvelope updateEvent = EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_USER_UPDATED)
+                .eventType(AppEventType.ATES_USER_UPDATED)
                 .producer(ATES_AUTH_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(userMapper.toResponceDto(appUser)).build();
@@ -101,7 +101,7 @@ public class AppUserService {
         data.put("role", appUser.getRole());
         data.put("version", appUser.getVersion());
         return EventEnvelope.preSetBuilder()
-                .eventType(EventType.ATES_USER_ROLE_CHANGED)
+                .eventType(AppEventType.ATES_USER_ROLE_CHANGED)
                 .producer(ATES_AUTH_PRODUCER_NAME)
                 .eventVersion("1")
                 .data(data).build();

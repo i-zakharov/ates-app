@@ -1,6 +1,5 @@
 package ru.zim.ates.auth.config;
 
-import javax.annotation.PostConstruct;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -8,24 +7,26 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_PRICES_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_PRICES_TASK_TRACKER_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_STREAM_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TASKS_STREAM_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_TEST_ROOTING_KEY;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_BILLING_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_TASK_TRACKER_QUEUE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_PRICES_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_PRICES_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_STREAM_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TASKS_STREAM_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TEST_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TEST_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_TEST_ROOTING_KEY;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_BILLING_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_TASK_TRACKER_QUEUE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_TASK_TRACKER_QUEUE;
 
 @Configuration
 public class AppRabbitMqConfig {
@@ -34,16 +35,24 @@ public class AppRabbitMqConfig {
 
     @Autowired
     private TasksPricesTaskTrackerQueue tasksPricesTaskTrackerQueue;
+    @Autowired
+    private TasksBillingQueue tasksBillingQueue;
+    @Autowired
+    private TasksStreamBillingQueue tasksStreamBillingQueue;
 
     @Autowired
     public AppRabbitMqConfig (ConnectionFactory connectionFactory) {
         admin = new RabbitAdmin(connectionFactory);
     }
 
-    @PostConstruct
+    @EventListener(ApplicationReadyEvent.class)
     public void cleanQueues() {
         //Чтобы было проще выполнять отладку мы можем чистить некоторые очереди на старте
         admin.purgeQueue(tasksPricesTaskTrackerQueue.getName(), false);
+
+        admin.purgeQueue(tasksBillingQueue.getName(), false);
+        admin.purgeQueue(tasksStreamBillingQueue.getName(), false);
+
     }
 
 

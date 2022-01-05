@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
-import ru.zim.ates.common.producer.ProducerNotifyEvent;
-import ru.zim.ates.common.schemaregistry.EventCategory;
-import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
-import ru.zim.ates.common.schemaregistry.utils.Utils;
+import ru.zim.ates.common.messaging.producer.ProducerNotifyEvent;
+import ru.zim.ates.common.messaging.schemaregistry.EventCategory;
+import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
+import ru.zim.ates.common.messaging.utils.Utils;
 
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_EXCHANGE;
-import static ru.zim.ates.common.schemaregistry.MqConfig.ATES_USERS_STREAM_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_EXCHANGE;
+import static ru.zim.ates.common.messaging.config.MqConfig.ATES_USERS_STREAM_EXCHANGE;
 
 @Component
 public class EventProducer {

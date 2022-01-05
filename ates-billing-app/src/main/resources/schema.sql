@@ -12,3 +12,36 @@ CREATE TABLE app_user
     version   INT,
     role_version INT
 );
+
+DROP TABLE IF EXISTS Task;
+
+CREATE TABLE Task
+(
+    id        IDENTITY PRIMARY KEY,
+    PUBLIC_ID VARCHAR(50)  NOT NULL UNIQUE,
+    title  VARCHAR(250),
+    is_closed BOOLEAN default false,
+    assignee_id BIGINT,
+    assigne_price DECIMAL(20, 2),
+    close_price DECIMAL(20, 2),
+    version   INT,
+    foreign key (assignee_id) references app_user(id)
+);
+
+DROP TABLE IF EXISTS INCOMING_EVENT;
+
+CREATE TABLE INCOMING_EVENT
+(
+    id        IDENTITY PRIMARY KEY,
+    PARSED_PUBLIC_ID VARCHAR(50),
+    RECIVE_TIME TIMESTAMP,
+    PROCESSING_TIME TIMESTAMP,
+    RAW_PAYLOAD CLOB,
+    CONSUMER_ERROR VARCHAR(100000),
+    RETRY_COUNTER INT,
+    STATUS VARCHAR(250),
+    PARSED_TYPE VARCHAR(1000),
+    PARSED_PRODUCER VARCHAR(1000),
+    PARSED_GENERATION_TIME TIMESTAMP,
+    PARSED_VERSION VARCHAR(1000)
+);

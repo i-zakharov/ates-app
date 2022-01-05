@@ -6,30 +6,23 @@ import java.util.Map;
 import java.util.UUID;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import ru.zim.ates.common.consumer.BaseConsumer;
-import ru.zim.ates.common.exception.AppException;
-import ru.zim.ates.common.schemaregistry.EventEnvelope;
-import ru.zim.ates.common.schemaregistry.EventSchemaRegistry;
-import ru.zim.ates.common.schemaregistry.utils.Utils;
+import ru.zim.ates.common.application.exception.AppException;
+import ru.zim.ates.common.messaging.consumer.PersistEventConsumer;
+import ru.zim.ates.common.messaging.schemaregistry.EventEnvelope;
+import ru.zim.ates.common.messaging.schemaregistry.EventSchemaRegistry;
+import ru.zim.ates.common.messaging.utils.Utils;
 
 @Service
-public class TasksPricesConsumer extends BaseConsumer {
+public class TasksPricesConsumer extends PersistEventConsumer {
     @Autowired
     private EventSchemaRegistry eventSchemaRegistry;
     @Autowired
     private TaskService taskService;
 
-    @Autowired
-    public TasksPricesConsumer(ApplicationContext applicationContext) {
-        super(applicationContext);
-    }
-
     @SneakyThrows
     @Override
-    protected void processMessage(String message) {
-        EventEnvelope eventEnvelope = eventSchemaRegistry.parseAndValidate(message);
+    protected void processMessage(EventEnvelope eventEnvelope) {
         switch (eventEnvelope.getEventType()) {
             case ATES_TASK_PRICE_SET:
                 onTaskPriceSet(eventEnvelope);

@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common"})
-@EnableJpaRepositories(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common.standartimpl.consumer.user"})
-@EntityScan(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common.standartimpl.consumer.user"})
+@EnableJpaRepositories(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common.standartimpl.consumer.user", "ru.zim.ates.common.messaging.consumer"})
+@EntityScan(basePackages = {"ru.zim.ates.tasktracker", "ru.zim.ates.common.standartimpl.consumer.user", "ru.zim.ates.common.messaging.consumer"})
 @EnableWebSecurity
 public class SpringBootAtesTaskTrackerApplication {
 

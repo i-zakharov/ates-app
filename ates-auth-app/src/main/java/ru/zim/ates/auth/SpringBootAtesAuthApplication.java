@@ -10,7 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = { "ru.zim.ates.auth", "ru.zim.ates.common" },
-        excludeFilters = @ComponentScan.Filter(type=FilterType.REGEX,pattern="ru\\.zim\\.ates\\.common\\.standartimpl\\..*"))
+        excludeFilters = { @ComponentScan.Filter(type = FilterType.REGEX, pattern = "ru\\.zim\\.ates\\.common\\.standartimpl\\..*"),
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = "ru\\.zim\\.ates\\.common\\.messaging\\.consumer\\..*") })
 @EnableWebSecurity
 public class SpringBootAtesAuthApplication {
 

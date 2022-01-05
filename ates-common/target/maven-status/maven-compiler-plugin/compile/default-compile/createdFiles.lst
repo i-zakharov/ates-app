@@ -9,6 +9,7 @@ ru\zim\ates\common\standartimpl\consumer\user\service\UsersStreamConsumer.class
 ru\zim\ates\common\standartimpl\consumer\user\service\UsersStreamConsumer$1.class
 ru\zim\ates\common\consumer\BaseConsumer.class
 ru\zim\ates\common\standartimpl\consumer\user\mapper\AppUserMapper.class
+ru\zim\ates\common\producer\ProducerNotifyEvent.class
 ru\zim\ates\common\standartimpl\consumer\user\dto\AppUserFromEventDto.class
 ru\zim\ates\common\standartimpl\consumer\user\service\AppUserService.class
 ru\zim\ates\common\standartimpl\consumer\user\dto\AppUserResponceDto$AppUserResponceDtoBuilder.class

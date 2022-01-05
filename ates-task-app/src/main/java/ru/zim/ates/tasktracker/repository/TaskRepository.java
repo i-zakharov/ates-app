@@ -7,7 +7,6 @@ import javax.persistence.LockModeType;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import ru.zim.ates.common.standartimpl.consumer.user.model.AppUser;
 import ru.zim.ates.tasktracker.model.Task;
 import ru.zim.ates.tasktracker.model.TaskStatus;
 

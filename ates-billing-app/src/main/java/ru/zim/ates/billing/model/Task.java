@@ -50,14 +50,7 @@ public class Task {
     @Column(name = "close_price")
     @Digits(integer = 20, fraction = 2, message = "{javax.validation.constraints.Digits.message}")
     private BigDecimal closePrice;
-    @Version()
     @Column(name = "VERSION")
     private Integer version;
 
-    @PrePersist
-    public void prePersist() {
-        if (this.id == null && this.publicId == null) {
-            this.publicId = java.util.UUID.randomUUID();
-        }
-    }
 }

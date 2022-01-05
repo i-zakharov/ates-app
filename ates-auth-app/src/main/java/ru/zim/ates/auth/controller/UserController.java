@@ -21,7 +21,7 @@ import ru.zim.ates.auth.dto.AppUserUpdateRequestDto;
 import ru.zim.ates.auth.mapper.AppUserMapper;
 import ru.zim.ates.auth.model.AppUser;
 import ru.zim.ates.auth.service.AppUserService;
-import ru.zim.ates.common.model.AppRole;
+import ru.zim.ates.common.application.model.AppRole;
 
 @Controller
 @RequestMapping("/auth/users")
