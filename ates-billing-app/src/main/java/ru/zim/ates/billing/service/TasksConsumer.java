@@ -51,7 +51,7 @@ public class TasksConsumer extends PersistEventConsumer {
 
     @SneakyThrows
     private void onTaskClosed(EventEnvelope eventEnvelope) {
-        AbstractConsumer.assertVersion(eventEnvelope, "1");
+        assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String taskPublicId = eventFieldsMap.get("taskPublicId").toString();
         String assigneePublicId = eventFieldsMap.get("assigneePublicId").toString();
@@ -60,7 +60,7 @@ public class TasksConsumer extends PersistEventConsumer {
 
     @SneakyThrows
     private void onTaskAssigned(EventEnvelope eventEnvelope) {
-        AbstractConsumer.assertVersion(eventEnvelope, "1");
+        assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String taskPublicId = eventFieldsMap.get("taskPublicId").toString();
         String assigneePublicId = eventFieldsMap.get("assigneePublicId").toString();
@@ -68,7 +68,7 @@ public class TasksConsumer extends PersistEventConsumer {
 
     @SneakyThrows
     private void onTaskPending(EventEnvelope eventEnvelope) {
-        AbstractConsumer.assertVersion(eventEnvelope, "1");
+        assertVersion(eventEnvelope, "1");
         Map<String, Object> eventFieldsMap = Utils.mapper.readValue(eventEnvelope.getData().toString(), HashMap.class);
         String publicId = eventFieldsMap.get("publicId").toString();
         PricingService.TaskPrices prices = billingFacadeService.calculateAndSetTaskPrice(UUID.fromString(publicId));

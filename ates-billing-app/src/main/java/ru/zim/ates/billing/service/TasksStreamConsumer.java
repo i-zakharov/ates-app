@@ -35,7 +35,7 @@ public class TasksStreamConsumer extends PersistEventConsumer {
 
     @SneakyThrows
     private void onTaskCUD(EventEnvelope eventEnvelope) {
-        AbstractConsumer.assertVersion(eventEnvelope, "1");
+        assertVersion(eventEnvelope, "1");
         TaskFromEventDto dto = Utils.mapper.readValue(eventEnvelope.getData().toString(), TaskFromEventDto.class);
         taskService.createOrUpdate(dto);
     }
